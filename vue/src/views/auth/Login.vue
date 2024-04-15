@@ -31,20 +31,18 @@
             </div>
         </div>
     </div>
-    <loading v-if="loading"></loading>
 </template>
 
 <style scoped>
 
 </style>
 <script setup>
-import Loading from "../../components/Loading.vue";
+
 </script>
 <script>
 export default {
     data: function () {
         return {
-            loading: false,
             phone: null,
             password: null
         }
@@ -54,13 +52,11 @@ export default {
     },
     methods: {
         login: function () {
-            this.loading = true;
             let data = {
                 phone: this.phone,
                 password: this.password
             };
             this.$store.dispatch("login", data).then(() => {
-                this.loading = false;
                 this.$router.push({
                     name: "Dashboard",
                 });

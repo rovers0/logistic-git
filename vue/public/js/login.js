@@ -4,32 +4,6 @@ function togglePwd(e, t) {
         ? ((e.type = 'text'), (t.innerHTML = '<i class="fa fa-eye-slash"></i>'))
         : ((e.type = 'password'), (t.innerHTML = '<i class="fa fa-eye"></i>'))
 }
-// function checkLogin() {
-//     var e = $('form[name=frmLogin]').serialize()
-//     return (
-//         $.ajax({
-//             url: root + 'home/log',
-//             data: e + '&action=Login',
-//             type: 'POST',
-//             cache: !1,
-//             dataType: 'json',
-//             beforeSend: function () {
-//                 $('body').prepend('<div class="screen" style="z-index:1000"></div>')
-//             },
-//             success: function (e) {
-//                 1 == e.status && (location.href = root + e.link),
-//                     0 == e.status && (alert(e.str), $('.screen').remove(), $('#txtEmail').focus()),
-//                     2 == e.status && (alert(e.str), location.reload())
-//             },
-//         }),
-//         !1
-//     )
-// }
-// function checkLogin2(e) {
-//     return '' == e.txtEmail.value
-//         ? (alert('Vui lòng nhập số điện thoại'), e.txtEmail.focus(), !1)
-//         : '' != e.txtPassword.value || (alert('Vui lòng nhập mật khẩu'), e.txtPassword.focus(), !1)
-// }
 function startTime() {
     var e = new Date(),
         t = e.getHours(),

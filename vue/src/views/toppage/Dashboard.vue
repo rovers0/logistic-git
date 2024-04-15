@@ -45,7 +45,7 @@
             </div>
             <div class="hbtk">
                 <ul class="hbtku">
-                    <li> <a href="./homepage#txonoff">
+                    <li> <a href="/dashboard#txonoff">
                             <div class="hblocktk"> <span class="ic1"><i class="fa fa-users"></i></span>
                                 <h3>Tài xế <span class="green">(4)</span></h3>
                                 <h4>Đăng nhập: <span>2</span></h4>
@@ -64,34 +64,54 @@
             <div class="hbd">
                 <div class="hblock hblock2">
                     <div class="htitle">
-                        <h3><i class="fa fa-bar-chart"></i> Biểu đồ doanh số <span class="green" id="idnam_3">2024</span></h3>
-                        <div class="plugin"> <span id="bdid_3"><i class="fa fa-sun-o faa-spin animated"></i> 2024</span>
-                            <div><a href="javascript:void(0)" class="achar_3" data-id="2023" data-flag="3">2023</a><a href="javascript:void(0)" class="achar_3" data-id="2024" data-flag="3">2024</a></div>
-                        </div>
-                    </div> <canvas id="vandonChart" height="142"></canvas>
+                        <h3>
+                            <i class="fa fa-calendar"></i> Lịch xe chạy hôm nay
+                        </h3>
+                    </div>
+                    <div class="table">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <th width="2%">STT</th>
+                                    <th>Tên tài xế</th>
+                                    <th>Số xe - Rơmooc</th>
+                                    <th width="8%">Thời gian</th>
+                                    <th>Tuyến vận chuyển</th>
+                                    <th width="5%">Neo xe</th>
+                                </tr>
+                            </thead>
+                            <tbody> </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="hblock hblock3">
                     <div class="htitle">
-                        <h3><i class="fa fa-bar-chart"></i> Biểu đồ nhiên liệu <span class="green" id="idnam_1">2024</span></h3>
-                        <div class="plugin"> <span id="bdid_1"><i class="fa fa-sun-o faa-spin animated"></i> 2024</span>
-                            <div><a href="javascript:void(0)" class="achar_1" data-id="2023" data-flag="1">2023</a><a href="javascript:void(0)" class="achar_1" data-id="2024" data-flag="1">2024</a></div>
-                        </div>
-                    </div> <canvas id="nhieulieuChart" height="130"></canvas>
-                </div>
-                <div class="hblock hblock4">
-                    <div class="htitle">
-                        <h3><i class="fa fa-bar-chart"></i> Biểu đồ lương tài xế <span class="green" id="idnam_2">2024</span></h3>
-                        <div class="plugin"> <span id="bdid_2"><i class="fa fa-sun-o faa-spin animated"></i> 2024</span>
-                            <div><a href="javascript:void(0)" class="achar_2" data-id="2023" data-flag="2">2023</a><a href="javascript:void(0)" class="achar_2" data-id="2024" data-flag="2">2024</a></div>
-                        </div>
-                    </div> <canvas id="luongChart" height="130"></canvas>
+                        <h3>
+                            <i class="fa fa-calendar"></i> Lịch xe chạy ngày mai
+                        </h3>
+                    </div>
+                    <div class="table">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <th width="2%">STT</th>
+                                    <th>Tên tài xế</th>
+                                    <th>Số xe - Rơmooc</th>
+                                    <th width="8%">Thời gian</th>
+                                    <th>Tuyến vận chuyển</th>
+                                    <th width="5%">Neo xe</th>
+                                </tr>
+                            </thead>
+                            <tbody> </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="hblock" style="margin:14px 0 0 0">
+            <!-- <div class="hblock" style="margin:14px 0 0 0">
                 <div class="htitle">
                     <h3><i class="fa fa-bullhorn"></i> Tin tức nội bộ gần nhất <a href="./forum/" title="Xem tất cả"><i class="fa fa-th-list"></i> Xem tất cả</a></h3>
                 </div>
-            </div>
+            </div> -->
             <div class="hblock" id="txonoff" style="margin:14px 0 0 0">
                 <div class="htitle">
                     <h3><i class="fa fa-users"></i> Phiên đăng nhập từ tài xế</h3>
@@ -585,8 +605,7 @@ export default {
     methods: {
         loadScript: function () {
             let files = [
-                'js/chart.min.js',
-                // 'js/home.js',
+                'js/home.js',
             ];
 
             files.forEach((file, i) => {

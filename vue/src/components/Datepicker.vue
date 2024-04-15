@@ -4,27 +4,28 @@
         :class="class"
         v-model="value"
         :format="format"
-        locale="ja"
-        :format-locale="ja"
+        locale="vi"
+        :format-locale="vi"
         cancelText=""
         selectText=""
         auto-apply
         keep-action-row
         :close-on-auto-apply="true"
-        :position="position">
+        :day-names="['T2', 'T3', 'T4', 'T5', 'T6', 'T7','CN']"
+        :month-names="['T2', 'T3', 'T4', 'T5', 'T6', 'T7','CN']"
+        >
     </Datepicker>
 </template>
 <script setup>
 import Datepicker from "@vuepic/vue-datepicker";
-import "@vuepic/vue-datepicker/dist/main.css";
-import { ja } from 'date-fns/locale';
+import { vi } from 'date-fns/locale';
 </script>
 <script>
 export default {
   props: {
     modelValue: {},
     class: { type: String },
-    format: { type: String, default: 'yyyy/MM/dd' },
+    format: { type: String, default: 'dd-MM-yyyy' },
     position: { type: String, default: 'right' }
   },
   emits: ['update:modelValue'],

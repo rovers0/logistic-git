@@ -1,182 +1,32 @@
-$(document).ready(function(e) {
-  $('.main').css({'background':'#f0f0f8','float':'left'});
-});
+function startTime() {
+  var e = new Date,
+      t = e.getHours(),
+      n = e.getMinutes(),
+      a = e.getSeconds(),
+      o = e.getDate(),
+      i = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12][e.getMonth()],
+      e = e.getFullYear(),
+      n = checkTime(n),
+      a = checkTime(a);
+  document.getElementById("show_clock").innerHTML = "Hôm nay: " + o + "-" + i + "-" + e + " <i class='fa fa-clock-o fa-spin'></i> <span style='color:yellow'>" + t + ":" + n + ":" + a + "</span>", setTimeout(startTime, 1e3)
+}
 
-//biểu đồ nhiêu liệu
-var ctx1 = document.getElementById("nhieulieuChart");
-var ctx2 = document.getElementById("luongChart");
-var ctx3 = document.getElementById("vandonChart");
+function checkTime(e) {
+  return e < 10 && (e = "0" + e), e
+};
 
-$.ajax({
-	url: root+"homepage/chart/",
-	data:"code=1",
-	async:true,
-	dataType:"json",
-	success:function(rs){
-		//console.log(rs);
-		//console.log(rs[1]);
-		var nhieulieuChart = new Chart(ctx1, {
-			 type: 'bar',
-			 data: {
-					labels: rs[0],//tháng
-					datasets: [{
-						 label: rs[3],
-						 data: rs[1],//số liệu tháng
-						 backgroundColor: rs[2]//chuỗi colors theo tháng
-					}]
-			 },
-			 options: {
-				 //indexAxis: 'y', dạng bar ngang (không xóa để dùng khi cần)
-				 interaction: {
-					intersect: false,
-					axis: 'x'
-				},
-				animation: {
-            duration: 2000,
-        },
-					plugins: {
-						legend: {
-							 display: false //This will do the task
-						}
-					}
-			 }
-		});//END.biểu đồ nhiêu liệu
-		
-		
-		//biểu đồ lương tài xế
-		var luongChart = new Chart(ctx2, {
-			 type: 'line',
-			 data: {
-					labels: rs[4],
-					datasets: [{
-						 label: rs[7],
-						 data: rs[5],
-						 backgroundColor: rs[6]
-					}]
-			 },
-			 options: {
-				 interaction: {
-					intersect: false,
-					axis: 'x'
-				},
-					plugins: {
-						legend: {
-							 display: false //This will do the task
-						}
-					}
-			 }
-		});//END.lương tài xế
-		
-		//biểu đồ vận đơn
-		$conf_vandon = {
-			 type: 'bar',
-			 data: {
-					labels: rs[8],
-					datasets: [{
-						 label: rs[11],
-						 data: rs[9],
-						 backgroundColor: rs[10]
-					}]
-			 },
-			 options: {
-				//indexAxis: 'y',
-				tooltips: {
-						enabled: true
-					},
-				 interaction: {
-					intersect: false,
-					axis: 'x'
-				},
-					plugins: {
-						legend: {
-							 display: false //This will do the task
-						}
-					}
-			 }
-		};
-		var vandonChart = new Chart(ctx3, $conf_vandon);//END.biểu đồ vận đơn
-		
-		//console.log(vandonChart.data.datasets[0].backgroundColor);
-		$('.plugin div a.achar_3').on("click",function(){
-			var $nam = $(this).attr('data-id'),
-			$flag = $(this).attr('data-flag');
-			
-			$.ajax({
-				url: root+"homepage/chart2/",
-				data:"code="+$nam+"&flag="+$flag,
-				async:true,
-				dataType:"json",
-				success:function(rs){
-					console.log(rs);
-					console.log(rs[0]);
-					$('#bdid_'+$flag).html('<i class="fa fa-sun-o faa-spin animated"></i> '+rs['nam']);
-					$('#idnam_'+$flag).html(rs['nam']);
-					
-					if(rs['flag']==3){
-						vandonChart.data.labels = rs[8];
-						vandonChart.data.datasets[0].label= rs[11];
-						vandonChart.data.datasets[0].data = rs[9];
-						vandonChart.data.datasets[0].backgroundColor = rs[10];
-						vandonChart.update();
-					}
-				}
-			});
-		});
-		
-		$('.plugin div a.achar_2').on("click",function(){
-			var $nam = $(this).attr('data-id'),
-			$flag = $(this).attr('data-flag');
-			
-			$.ajax({
-				url: root+"homepage/chart2/",
-				data:"code="+$nam+"&flag="+$flag,
-				async:true,
-				dataType:"json",
-				success:function(rs){
-					//console.log(rs);
-					console.log(rs[0]);
-					$('#bdid_'+$flag).html('<i class="fa fa-sun-o faa-spin animated"></i> '+rs['nam']);
-					$('#idnam_'+$flag).html(rs['nam']);
-					
-					if(rs['flag']==2){
-						luongChart.data.labels = rs[4];
-						luongChart.data.datasets[0].label= rs[7];
-						luongChart.data.datasets[0].data = rs[5];
-						luongChart.data.datasets[0].backgroundColor = rs[6];
-						luongChart.update();
-					}
-				}
-			});
-			
-		});
-		
-		$('.plugin div a.achar_1').on("click",function(){
-			var $nam = $(this).attr('data-id'),
-			$flag = $(this).attr('data-flag');
-			
-			$.ajax({
-				url: root+"homepage/chart2/",
-				data:"code="+$nam+"&flag="+$flag,
-				async:true,
-				dataType:"json",
-				success:function(rs){
-					//console.log($flag);
-					//console.log(rs);
-					//console.log(rs[0]);
-					$('#bdid_'+$flag).html('<i class="fa fa-sun-o faa-spin animated"></i> '+rs['nam']);
-					$('#idnam_'+$flag).html(rs['nam']);
-					
-					if(rs['flag']==1){
-						nhieulieuChart.data.labels = rs[0];
-						nhieulieuChart.data.datasets[0].label= rs[3];
-						nhieulieuChart.data.datasets[0].data = rs[1];
-						nhieulieuChart.data.datasets[0].backgroundColor = rs[2];
-						nhieulieuChart.update();
-					}
-				}
-			});
-			
-		});
-		
-	}
-});//END.AJAX biểu đồ
+function previewImg(e, t) {
+  var n = t,
+      a = document.getElementById("img_file").files,
+      o = [];
+  if ($(".view_pics").fadeIn(), a.length > n) alert("Bạn chỉ được chọn tối đa " + t + " hình ảnh ('png', 'jpeg', 'jpg')"), $("#img_file").val(""), $(".view_pics").html("");
+  else
+      for ($(".view_pics").html(""), i = 0; i < a.length; i++) - 1 === o.indexOf(a[i].name) && ($(".view_pics").append('<img src="" id="' + i + '">'), $(".view_pics img:eq(" + i + ")").attr("src", URL.createObjectURL(e.target.files[i])))
+}
+
+function previewImg2(e, t) {
+  document.getElementById("img_file_" + t).files;
+  var n = document.getElementById("view_pics_" + t),
+      e = (document.getElementById("img_file_" + t).files, URL.createObjectURL(e.target.files[0]));
+  n.append('<img src="' + e + '" id="' + t + '">')
+}

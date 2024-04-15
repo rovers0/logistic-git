@@ -10,4 +10,8 @@ class Setting extends Model
     use HasFactory;
 
     protected $table = 'setting';
+
+    protected $fillable = [
+        'user_id', 'value'
+    ];
 }

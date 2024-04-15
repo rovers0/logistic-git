@@ -3,12 +3,12 @@
         <div class="scroll">
             <span class="close_pop" @click="onClose()">×</span>
             <div class="pophead">
-                <h2>Giấy phép đi đường</h2>
-                <p>Màn hình thêm mới thông tin Giấy phép đi đường</p>
+                <h2>Phí Bảo hiểm tự nguyện</h2>
+                <p>Màn hình thêm mới thông tin Phí Bảo hiểm tự nguyện</p>
             </div>
             <div class="frm">
-                <form name="frmPhi" id="frmPhi" method="post" data-id="NF9fX19fMTVIMDI5ODVfX19fXzVfX19fXzE" onsubmit="return insert('xe','dk_insert','frmPhi','img_file')" enctype="multipart/form-data">
-                    <input type="hidden" name="code" value="NF9fX19fMTVIMDI5ODVfX19fXzVfX19fXzE">
+                <form name="frmPhi" id="frmPhi" method="post" data-id="NF9fX19fMTVIMDI5ODVfX19fXzNfX19fXzE" onsubmit="return insert('xe','dk_insert','frmPhi','img_file')" enctype="multipart/form-data">
+                    <input type="hidden" name="code" value="NF9fX19fMTVIMDI5ODVfX19fXzNfX19fXzE">
                     <table class="table">
                         <tbody>
                             <tr>
@@ -16,7 +16,7 @@
                                     <b>Số tiền phí</b>
                                 </td>
                                 <td>
-                                    <input type="text" name="ds[sotien]" data-type="currency" placeholder="VD: 5,000,000" maxlength="30">
+                                    <input type="text" v-model="data.fee" data-type="currency" placeholder="VD: 5,000,000" maxlength="30">
                                 </td>
                             </tr>
                             <tr>
@@ -24,7 +24,7 @@
                                     <b>Ngày hiệu lực</b>
                                 </td>
                                 <td>
-                                    <input type="text" name="ds[ngaydangkiem]" class="picker hasDatepicker" autocomplete="off" placeholder="VD: 20-07-2020" maxlength="10" required="" id="dp1711425746994">
+                                    <input type="text" v-model="data.registDate" class="picker hasDatepicker" autocomplete="off" placeholder="VD: 20-07-2020" maxlength="10" required="" id="dp1711425746990">
                                 </td>
                             </tr>
                             <tr>
@@ -32,7 +32,7 @@
                                     <b>Ngày hết hạn</b>
                                 </td>
                                 <td>
-                                    <input type="text" name="ds[ngayhethan]" class="picker hasDatepicker" autocomplete="off" placeholder="VD: 30-07-2021" maxlength="10" required="" id="dp1711425746995">
+                                    <input type="text" v-model="expireDate" class="picker hasDatepicker" autocomplete="off" placeholder="VD: 30-07-2021" maxlength="10" required="" id="dp1711425746991">
                                 </td>
                             </tr>
                             <tr>
@@ -40,7 +40,7 @@
                                     <b>Báo trước mấy ngày?</b>
                                 </td>
                                 <td>
-                                    <input type="text" name="ds[alert]" value="7" onkeypress="return checkIt(event)" placeholder="Số ngày hiện thông báo gia hạn phí. VD: 7" maxlength="2" required="">
+                                    <input type="text"  v-model="alertDate" onkeypress="return checkIt(event)" placeholder="Số ngày hiện thông báo gia hạn phí. VD: 7" maxlength="2" required="">
                                 </td>
                             </tr>
                             <tr>
@@ -48,7 +48,7 @@
                                     <b>Ghi chú</b>
                                 </td>
                                 <td>
-                                    <textarea name="ds[ghichu]" placeholder="Ghi chú (nếu có)..." maxlength="500"></textarea>
+                                    <textarea v-model="data.note" placeholder="Ghi chú (nếu có)..." maxlength="500"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -93,7 +93,7 @@ import { mapState, mapActions, mapMutations } from "vuex";
 </script>
 <script>
 export default {
-    props: ['show', 'keys', 'selectedKey'],
+    props: ['data', 'keys', 'selectedKey'],
     emits: ['close'],
     data: function () {
         return {

@@ -20,13 +20,13 @@
         </div>
         <ul class="topplugin topplugin_fix">
             <li><a href="./suco" title="Thông báo sự cố"><i class="fa fa-exclamation-triangle"></i> Sự cố <span class="red bold">(0)</span></a></li>
-            <li><a href="./test-gps" title="Track map"><i class="fa fa-map-marker"></i> Track map</a></li>
+            <!-- <li><a href="./test-gps" title="Track map"><i class="fa fa-map-marker"></i> Track map</a></li> -->
             <li><a href="./lichxe" title="Xem lịch xe"><i class="fa fa-truck"></i> Lịch xe</a></li>
             <li><a href="./baogiatuyen" title="Theo dõi báo giá"><i class="fa fa-folder-open"></i> Bảng giá HĐ</a></li>
-            <li><a href="./forum" title="Thông tin nội bộ"><i class="fa fa-bullhorn"></i> Forum</a></li>
+            <!-- <li><a href="./forum" title="Thông tin nội bộ"><i class="fa fa-bullhorn"></i> Forum</a></li> -->
             <li><a href="./sotay" title="Sổ tay cá nhân"><i class="fa fa-book"></i> Sổ tay</a></li>
-            <li><a href="./soluong" title="Bảng lương cá nhân"><i class="fa fa-list-alt"></i> Sổ lương</a></li>
-            <li><a href="./hotro" title="Hỗ trợ hệ thống"><i class="fa fa-question-circle"></i> Hỗ trợ</a></li>
+            <!-- <li><a href="./soluong" title="Bảng lương cá nhân"><i class="fa fa-list-alt"></i> Sổ lương</a></li>
+            <li><a href="./hotro" title="Hỗ trợ hệ thống"><i class="fa fa-question-circle"></i> Hỗ trợ</a></li> -->
         </ul>
         <div class="forum" title="Thông báo mới"><a href="javascript:void(0)" class="noticlick dropbtn" onclick="dropFunction()"><span class="sp1"><i class="fa fa-bell"></i></span></a>
             <div class="noti" id="noti">
@@ -43,21 +43,19 @@
     </div>
     <div class="banner_clear"></div>
     <div class="transmenu"></div>
-    <loading v-if="loading"></loading>
 </template>
 
 <style scoped>
 
 </style>
 <script setup>
-import Loading from "../../Loading.vue";
+
 </script>
 <script>
 export default {
     emits: ['refreshPage'],
     data: function () {
         return {
-            loading: false,
             menu: 1,
         }
     },
@@ -66,20 +64,16 @@ export default {
     },
     methods: {
         changeMenuType: function () {
-            this.loading = true;
             let data = {
                 menu: this.menu
             };
             this.$store.dispatch("changeMenuType", data).then((res) => {
                 localStorage.setItem('setting', res.data.data.setting);
-                this.loading = false;
                 this.$router.go();
             });
         },
         logout: function () {
-            this.loading = true;
             this.$store.dispatch("logout").then(() => {
-                this.loading = false;
                 this.$router.push({
                     name: "Login",
                 });

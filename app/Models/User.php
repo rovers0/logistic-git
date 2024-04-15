@@ -3,15 +3,20 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Enums\UserRole;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +24,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name', 'email', 'password', 'email_verified_at', 'remember_token', 'phone', 'role', 'allowed', 'image', 'setting'
+        'name', 'email', 'password', 'email_verified_at',
+        'remember_token', 'phone', 'role', 'allowed',
+        'setting', 'account',
     ];
 
     /**
@@ -42,7 +49,18 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public static function checkUser ($request) {
+    public function isAdmin()
+    {
+        return $this->role & UserRole::ADMIN->value;
+    }
+
+    public function isDriver()
+    {
+        return $this->role & UserRole::DRIVER->value;
+    }
+
+    public static function checkUser($request)
+    {
         $user = self::where('phone', $request->phone)->first();
         if (!$user) {
             return false;
@@ -57,5 +75,10 @@ class User extends Authenticatable
     public function setting()
     {
         return $this->belongsTo(Setting::class, 'id', 'user_id');
+    }
+
+    public function driver()
+    {
+        return $this->hasOne(Driver::class);
     }
 }

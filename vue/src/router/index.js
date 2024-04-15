@@ -12,9 +12,9 @@ import DefaultLayout from "@/components/layout/DefaultLayout.vue";
 import Login from "@/views/auth/Login.vue";
 //Top page
 import Dashboard from "@/views/toppage/Dashboard.vue";
-import Vehicle from "@/views/vehicle/index.vue";
-import Romooc from "@/views/vehicle/romooc.vue";
-import Driver from "@/views/vehicle/driver.vue";
+import Vehicle from "@/views/vehicles/index.vue";
+import Romooc from "@/views/vehicles/romooc.vue";
+import Driver from "@/views/vehicles/driver.vue";
 
 const routes = [
   {

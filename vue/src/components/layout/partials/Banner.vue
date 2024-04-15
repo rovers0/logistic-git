@@ -1,15 +1,15 @@
 <template>
     <div class="banner">
-        <a href="/" class="logo"><img src="logo.png"></a>
-        <h1><a href="/" style="color:#fff">Phần mềm <span style="color:yellow">LogisViet</span></a><span class="slog">Hệ thống điều hành vận tải - Logistics</span></h1>
+        <a href="/dashboard" class="logo"><img src="logo.png"></a>
+        <h1><a href="/dashboard" style="color:#fff">Phần mềm <span style="color:yellow">LogisViet</span></a><span class="slog">Hệ thống điều hành vận tải - Logistics</span></h1>
         <ul class="topplugin">
             <li><a href="./suco" title="Thông báo sự cố"><i class="fa fa-exclamation-triangle"></i> Sự cố <span class="red bold">(0)</span></a></li>
-            <li><a href="./test-gps" title="Track map"><i class="fa fa-map-marker"></i> Track map</a></li>
+            <!-- <li><a href="./test-gps" title="Track map"><i class="fa fa-map-marker"></i> Track map</a></li> -->
             <li><a href="./lichxe" title="Xem lịch xe"><i class="fa fa-truck"></i> Lịch xe</a></li>
-            <li><a href="./forum" title="Thông tin nội bộ"><i class="fa fa-bullhorn"></i> Forum</a></li>
+            <!-- <li><a href="./forum" title="Thông tin nội bộ"><i class="fa fa-bullhorn"></i> Forum</a></li> -->
             <li><a href="./sotay" title="Sổ tay cá nhân"><i class="fa fa-book"></i> Sổ tay</a></li>
-            <li><a href="./soluong" title="Bảng lương cá nhân"><i class="fa fa-list-alt"></i> Sổ lương</a></li>
-            <li><a href="./hotro" title="Hỗ trợ hệ thống"><i class="fa fa-question-circle"></i> Hỗ trợ</a></li>
+            <!-- <li><a href="./soluong" title="Bảng lương cá nhân"><i class="fa fa-list-alt"></i> Sổ lương</a></li>
+            <li><a href="./hotro" title="Hỗ trợ hệ thống"><i class="fa fa-question-circle"></i> Hỗ trợ</a></li> -->
         </ul>
         <div class="forum" title="Thông báo mới"><a href="javascript:void(0)" class="noticlick dropbtn" onclick="dropFunction()"><span class="sp1"><i class="fa fa-bell"></i></span></a>
             <div class="noti" id="noti">

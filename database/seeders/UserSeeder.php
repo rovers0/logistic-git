@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     {
         $password = Hash::make('12345678');
         DB::unprepared("
-            INSERT INTO users(name,email,password,phone,role) VALUES('Test','admin@gmail.com','$password','0123456789','admin');
+            INSERT INTO users(name,email,password,phone,role,account) VALUES('Test','admin@gmail.com','$password','0123456789',1,'0123456789');
         ");
     }
 }

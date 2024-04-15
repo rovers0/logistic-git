@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Traits\ApiResponseTrait;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +12,6 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
-    use ApiResponseTrait;
 
     /**
      * @OA\Post(
@@ -85,7 +83,7 @@ class AuthController extends Controller
         }
 
         $user = $request->user();
-        if (! Hash::check($request->password, $user->password)) {
+        if (!Hash::check($request->password, $user->password)) {
             return $this->responseApiError(__('auth.old_password_not_match'));
         }
 
