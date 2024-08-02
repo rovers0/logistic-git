@@ -12,9 +12,14 @@ import DefaultLayout from "@/components/layout/DefaultLayout.vue";
 import Login from "@/views/auth/Login.vue";
 //Top page
 import Dashboard from "@/views/toppage/Dashboard.vue";
-import Vehicle from "@/views/vehicle/index.vue";
-import Romooc from "@/views/vehicle/romooc.vue";
-import Driver from "@/views/vehicle/driver.vue";
+import Vehicle from "@/views/vehicles/index.vue";
+import Romooc from "@/views/vehicles/romooc.vue";
+import Driver from "@/views/vehicles/driver.vue";
+import Booking from "@/views/booking/index.vue";
+import Order from "@/views/booking/order.vue";
+import Report from "@/views/report/index.vue";
+import ReportDetail from "@/views/report/reportDetail.vue";
+import ReportByVehicle from "@/views/report/reportByVehicle.vue";
 
 const routes = [
   {
@@ -71,6 +76,58 @@ const routes = [
         path: "/vehicle/driver",
         name: "Driver",
         component: Driver,
+      },
+    ]
+  },
+  {
+    path: "/booking",
+    redirect: "/booking",
+    component: DefaultLayout,
+    meta: {
+      requiresAuth: true,
+      accessKey: true,
+    },
+    children: [
+      {
+        path: "/booking",
+        name: "Booking",
+        component: Booking,
+      },
+      {
+        path: "/booking/order",
+        name: "Order",
+        component: Order,
+      },
+      // {
+      //   path: "/booking/cont",
+      //   name: "mooc",
+      //   component: Romooc,
+      // },
+    ]
+  },
+  {
+    path: "/report",
+    redirect: "/report",
+    component: DefaultLayout,
+    meta: {
+      requiresAuth: true,
+      accessKey: true,
+    },
+    children: [
+      {
+        path: "/report",
+        name: "Report",
+        component: Report,
+      },
+      {
+        path: "/report/detail/:year/:month",
+        name: "ReportDetail",
+        component: ReportDetail,
+      },
+      {
+        path: "/reportbyvehicle",
+        name: "Reportbyvehicle",
+        component: ReportByVehicle,
       },
     ]
   },

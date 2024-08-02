@@ -3,7 +3,7 @@
         <span class="mbmenu"><i class="fa fa-bars"></i></span><a href="/" class="home"><i class="fa fa-home"></i></a>
         <ul class="menu">
             <li><a href="/"><i class="fa fa-home mnh"></i> Home</a></li>
-            <li><a href="./vandon">Vận đơn <i class="fa fa-caret-down"></i></a>
+            <!-- <li><a href="./vandon">Vận đơn <i class="fa fa-caret-down"></i></a>
                 <ul>
                     <li><a href="./lenh">Lệnh điều động</a></li>
                     <li><a href="./lenh/xuat">Danh sách Cont</a></li>
@@ -40,7 +40,7 @@
                     <li><a href="./suachua">Sửa chữa vặt</a></li>
                     <li><a href="./hangmuc"><i class="fa fa-plus"></i> Hạng mục sửa chữa</a></li>
                 </ul>
-            </li>
+            </li> -->
             <li><a href="./vehicle">Phương tiện <i class="fa fa-caret-down"></i></a>
                 <ul>
                     <li><a href="./vehicle">Đội xe</a></li>
@@ -48,11 +48,11 @@
                     <li><a href="./vehicle/driver">Tài xế</a></li>
                 </ul>
             </li>
-            <li><a href="./baocao"><i class="fa fa-area-chart mnh"></i> Báo cáo</a>
+            <!-- <li><a href="./baocao"><i class="fa fa-area-chart mnh"></i> Báo cáo</a>
                 <ul>
                     <li><a href="./baocaoxe">Doanh thu theo xe</a></li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
         <div class="user"><a href="javascript:void(0)" title="Tài khoản đăng nhập" class="toogle_user"><i class="fa fa-user"></i> Hi, Vtm</a>
             <div class="toogle_class"><i class="arrow-up"></i><i class="arrow-up2"></i><span>V</span>
@@ -75,21 +75,19 @@
         </div>
     </div>
     <div class="transmenu"></div>
-    <loading v-if="loading"></loading>
 </template>
 
 <style scoped>
 
 </style>
 <script setup>
-import Loading from "../../Loading.vue";
+
 </script>
 <script>
 export default {
     emits: ['refreshPage'],
     data: function () {
         return {
-            loading: false,
             menu: 0,
             isMobile: false
         }
@@ -99,20 +97,16 @@ export default {
     },
     methods: {
         changeMenuType: function () {
-            this.loading = true;
             let data = {
                 menu: this.menu
             };
             this.$store.dispatch("changeMenuType", data).then((res) => {
                 localStorage.setItem('setting', res.data.data.setting);
-                this.loading = false;
                 this.$router.go();
             });
         },
         logout: function () {
-            this.loading = true;
             this.$store.dispatch("logout").then(() => {
-                this.loading = false;
                 this.$router.push({
                     name: "Login",
                 });

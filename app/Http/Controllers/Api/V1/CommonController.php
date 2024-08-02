@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Traits\ApiResponseTrait;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Models\User;
+use App\Models\Fees;
 
 class CommonController extends Controller
 {
-    use ApiResponseTrait;
 
     public function changeMenuType(Request $request)
     {
@@ -21,5 +20,12 @@ class CommonController extends Controller
         $setting->save();
 
         return $this->responseApiSuccess(['setting' => $setting->value]);
+    }
+
+    public function getFees()
+    {
+        $fees = Fees::all();
+
+        return $this->responseApiSuccess($fees);
     }
 }
